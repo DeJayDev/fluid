@@ -1,0 +1,11 @@
+token: ""
+intents: 641
+manhole_enable: true
+
+bot:
+  command_prefixes: ['?']
+  command_require_mention: false
+  commands_allow_edit: true
+  plugins:
+    - fluid.app
+    - fluid.queue  

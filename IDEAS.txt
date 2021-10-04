@@ -1,0 +1,3 @@
+Lyrics for currently playing song
+Link to currently playing song
+Search before queueing (low priority)

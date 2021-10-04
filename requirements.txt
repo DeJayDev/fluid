@@ -1,0 +1,8 @@
+-e git+https://github.com/elderlabs/betterdisco@91aa57e151d799cf89bfaa3ea6a7692a4d0ce6f9#egg=disco-py
+-e git+https://github.com/elderlabs/holster#egg=holster
+requests[security]
+earl-etf
+gipc
+youtube_dl
+pynacl
+pyyaml
