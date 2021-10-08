@@ -1,4 +1,3 @@
-
 from disco.bot.plugin import Plugin
 from disco.voice.player import Player
 from disco.util.sanitize import S
