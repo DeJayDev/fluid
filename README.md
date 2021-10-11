@@ -1,7 +1,7 @@
 # Fluid
 
-![Requires.io](https://img.shields.io/requires/github/dejaydev/fluid?style=for-the-badge)
-![GitHub file size in bytes](https://img.shields.io/github/size/dejaydev/fluid?style=for-the-badge)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/DeJayDev/Fluid?style=for-the-badge)
+![GitHub file size in bytes](https://img.shields.io/github/size/DeJayDev/Fluid?style=for-the-badge)
 
 ## Dockering
 
