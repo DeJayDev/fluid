@@ -1,4 +1,4 @@
-from youtube_dl.utils import UnsupportedError
+from yt_dlp.utils import UnsupportedError
 
 from disco.bot import Plugin
 from disco.bot.command import CommandError

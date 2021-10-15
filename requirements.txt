@@ -3,7 +3,7 @@ git+https://github.com/elderlabs/holster#egg=holster
 requests[security]
 earl-etf
 gipc
-youtube_dl
+yt-dlp
 pynacl
 pyyaml
 Flask[async]
