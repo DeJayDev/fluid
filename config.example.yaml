@@ -6,6 +6,10 @@ bot:
   command_prefixes: ['?']
   command_require_mention: false
   commands_allow_edit: true
+  http_enabled: true
+  http_host: '0.0.0.0'
+  http_port: 6879
   plugins:
     - fluid.app
-    - fluid.queue  
+    - fluid.queue
+    - fluid.uptime

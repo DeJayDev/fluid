@@ -1,4 +1,3 @@
-from fluid.audio.playabletrack import PlayableTrack
 from youtube_dl.utils import UnsupportedError
 
 from disco.bot import Plugin
@@ -20,6 +19,12 @@ class FluidPlugin(Plugin):
             raise CommandError("I'm not currently playing music here.")
         return self.guilds.get(guild_id)
 
+    def remove_player(self, guild_id) -> Player:
+        if guild_id in self.guilds:
+            player = self.guilds.pop(guild_id)
+            player.client.disconnect()
+            return player
+
     def _join_voice(self, state, guild_id):
         client = state.channel.connect()
         self.guilds[guild_id] = Player(client)
@@ -32,7 +37,22 @@ class FluidPlugin(Plugin):
     @Plugin.listen('MessageCreate')
     def on_message(self, event):
         if event.author.bot:
-            return  # Shut the fuck up.
+            return  # don't care
+
+    # TODO: If the bot is the last one in the voice channel, leave the channel.
+    # Requires some work in Disco to know how many people are in a voice channel at any given time.
+    # Here's some Copilot code that may actually work after a VoiceChannel provides members:
+    # 
+    # @Plugin.listen('VoiceStateUpdate')
+    # def on_voice_state_update(self, event):
+    #     if event.guild.id not in self.guilds:
+    #         return
+    #     if event.member.id == self.client.user.id:
+    #         return
+    #     if event.channel_id != self.guilds[event.guild.id].channel.id:
+    #         return
+    #     if event.member.voice.channel.members.count == 1:
+    #         self.guilds[event.guild.id].channel.disconnect()
 
     @Plugin.command('ping')
     def on_ping(self, event):
@@ -74,9 +94,8 @@ class FluidPlugin(Plugin):
 
     @Plugin.command('play', '<song:str...>')
     def on_play(self, event, song):
-        if event.member.get_voice_state().channel is None: # TODO:
+        if event.member.get_voice_state().channel is None: # TODO: If the bot IS in a channel, invite the user to join it.
             return event.msg.reply('You must be connected to voice to use this command.')
-        
         try:
             # Telecom: playable = YoutubeDLPlayable.from_url(song)
             #playable = YoutubeDLInput(song)
@@ -110,7 +129,9 @@ class FluidPlugin(Plugin):
     @Plugin.command('disconnect')
     def on_disconnect(self, event):
         self.get_player(event.guild.id).disconnect()
+        self.remove_player(event.guild.id)
 
     @Plugin.command('kill')
     def on_kill(self, event):
+        self.get_player(event.guild.id).disconnect()
         self.get_player(event.guild.id).client.ws.sock.shutdown()

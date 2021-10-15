@@ -1,5 +1,5 @@
--e git+https://github.com/elderlabs/betterdisco@e63e109d9c389ca139513adb93240565b7c667d9#egg=disco-py
--e git+https://github.com/elderlabs/holster#egg=holster
+#-e git+https://github.com/elderlabs/betterdisco@f8dd7d7a3d70a5c48c1bfaa2b1a9ba814679a9f2#egg=disco-py
+git+https://github.com/elderlabs/holster#egg=holster
 requests[security]
 earl-etf
 gipc
